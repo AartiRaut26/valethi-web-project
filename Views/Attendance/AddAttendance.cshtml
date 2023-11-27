@@ -1,0 +1,53 @@
+﻿<!-- Views/Home/AddAttendance.cshtml -->
+@model Attendance
+
+<!-- Include the alert partial view -->
+@await Html.PartialAsync("_AlertPartial")
+
+<h1>Add Attendance</h1>
+
+<form asp-controller="Attendance" asp-action="AddAttendance" method="post" id="addStudentForm">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label for="studentId">Student ID:</label>
+        <input type="text" id="studentId" name="StudentId" class="form-control" />
+        <span asp-validation-for="StudentId" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label for="classId">Class ID:</label>
+        <input type="text" id="classId" name="ClassId" class="form-control" />
+        <span asp-validation-for="ClassId" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label for="time">Time:</label>
+        <input type="datetime-local" id="time" name="Time" class="form-control" />
+        <span asp-validation-for="Time" class="text-danger"></span>
+
+    </div>
+    <button type="submit" class="btn btn-primary" id="addStudentButton">Add New</button>
+    <a asp-controller="Attendance" asp-action="Attendances">Back To Attendance List</a>
+
+
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        document.getElementById('addStudentForm').addEventListener('submit', function () {
+            showAlert('Data Added Successfully');
+        });
+
+        function showAlert(message) {
+            document.getElementById('alertMessage').innerText = message;
+            var alertElement = new bootstrap.Alert(document.getElementById('customAlert'));
+            setTimeout(function () {
+                alertElement.close();
+            }, 3000); // Close the alert after 3 seconds
+        }
+    </script>
+
+    }

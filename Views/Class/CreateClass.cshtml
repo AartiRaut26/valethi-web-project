@@ -1,0 +1,44 @@
+﻿@model NewStudentAttendanceAPI.Web.Models.NewClassViewModel
+
+<!-- Include the alert partial view -->
+@await Html.PartialAsync("_AlertPartial")
+
+<h2>Create Class</h2>
+
+@using (Html.BeginForm("CreateClass", "Class", FormMethod.Post, new { id = "createClassForm" }))
+{
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ClassName, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.ClassName, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.ClassName, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" id="createClassButton" />
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "ClassList")
+</div>
+
+<script>
+    document.getElementById('createClassForm').addEventListener('submit', function () {
+        showAlert('Class Data Added Successfully');
+    });
+
+    function showAlert(message) {
+        document.getElementById('alertMessage').innerText = message;
+        var alertElement = new bootstrap.Alert(document.getElementById('customAlert'));
+        alertElement.classList.add('show'); // Show the alert
+        setTimeout(function () {
+            alertElement.classList.remove('show'); // Hide the alert after 3 seconds
+        }, 3000);
+    }
+</script>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    }

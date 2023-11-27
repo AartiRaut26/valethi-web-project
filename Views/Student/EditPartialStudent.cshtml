@@ -1,0 +1,49 @@
+﻿@model Student
+
+<!-- Include the alert partial view -->
+@await Html.PartialAsync("_AlertPartial")
+
+<form asp-action="EditPartialStudent" asp-route-id="@Model.StudentId" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <h4>Edit Student: @Model.StudentName</h4>
+
+    <div class="form-group">
+        <label for="op">Operation</label>
+        <select class="form-control" id="op" name="operations[0].op">
+            <option value="replace">Replace</option>
+            <!-- Add other operation types if needed -->
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="path">Path</label>
+        <input type="text" class="form-control" id="path" name="operations[0].path" placeholder="Enter property path">
+    </div>
+
+    <div class="form-group">
+        <label for="value">Value</label>
+        <input type="text" class="form-control" id="value" name="operations[0].value" placeholder="Enter new value">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit Patch</button>
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.getElementById('addStudentForm').addEventListener('submit', function () {
+            showAlert('Data patch Successfully');
+        });
+
+        function showAlert(message) {
+            document.getElementById('alertMessage').innerText = message;
+            var alertElement = new bootstrap.Alert(document.getElementById('customAlert'));
+            setTimeout(function () {
+                alertElement.close();
+            }, 3000); // Close the alert after 3 seconds
+        }
+    </script>
+
+    }
+

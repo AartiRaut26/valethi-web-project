@@ -1,0 +1,22 @@
+﻿@model Attendance // Replace with the actual namespace of your model
+
+<h2>Attendance Details</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Attendance ID</th>
+            <th>Student ID</th>
+            <th>Class ID</th>
+            <th>Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.AttendanceId</td>
+            <td>@Model.StudentId</td>
+            <td>@Model.ClassId</td>
+            <td>@Model.Time</td>
+        </tr>
+    </tbody>
+</table>

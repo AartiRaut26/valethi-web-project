@@ -1,0 +1,34 @@
+﻿@model List<ClassViewModel>
+
+<div class="container">
+    <section>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Class ID</th>
+                    <th>Class Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var classItem in Model)
+                {
+                    <tr>
+                        <td>@classItem.ClassId</td>
+                        <td>@classItem.ClassName</td>
+                        <td>
+                            <!-- Other action links... -->
+
+                            <form asp-action="Patch" asp-route-id="@classItem.ClassId" method="post">
+                                <input type="hidden" name="Op" value="replace" />
+                                <input type="hidden" name="Path" value="your-property-path" />
+                                <input type="hidden" name="Value" value="new-value" />
+                                <button type="submit" class="btn btn-primary btn-sm" style="margin-right: 5px;">Patch</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section>
+</div>

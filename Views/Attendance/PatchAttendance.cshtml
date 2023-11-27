@@ -1,0 +1,31 @@
+﻿@model Attendance
+
+@{
+	// Declare variables outside the if block
+	var studentId = Model?.StudentId;
+	var classId = Model?.ClassId;
+}
+
+<form asp-action="PatchAttendance" asp-route-studentId="@studentId" asp-route-classId="@classId" method="post">
+	<h4>Patch Attendance for Student: @studentId, Class: @classId</h4>
+
+	<div class="form-group">
+		<label for="op">Operation</label>
+		<select class="form-control" id="op" name="operations[0].op">
+			<option value="replace">Replace</option>
+			<!-- Add other operation types if needed -->
+		</select>
+	</div>
+
+	<div class="form-group">
+		<label for="path">Path</label>
+		<input type="text" class="form-control" id="path" name="operations[0].path" placeholder="Enter property path">
+	</div>
+
+	<div class="form-group">
+		<label for="value">Value</label>
+		<input type="text" class="form-control" id="value" name="operations[0].value" placeholder="Enter new value">
+	</div>
+
+	<button type="submit" class="btn btn-primary">Submit Patch</button>
+</form>

@@ -1,0 +1,34 @@
+﻿<!-- Views/Home/DeleteStudent.cshtml -->
+@model Student
+
+<!-- Include the alert partial view -->
+@await Html.PartialAsync("_AlertPartial")
+
+<h1>Delete Student</h1>
+
+<p>Are you sure you want to delete the student <strong>@Model.StudentName</strong>?</p>
+
+<form asp-controller="Student" asp-action="DeleteStudent" asp-route-id="@Model.StudentId" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-controller="Student" asp-action="StudentList" class="btn btn-secondary">Cancel</a>
+</form>
+@section Scripts{
+
+    <script>
+        document.getElementById('addStudentForm').addEventListener('submit', function () {
+            showAlert('Data deleted Successfully');
+        });
+
+        function showAlert(message) {
+            document.getElementById('alertMessage').innerText = message;
+            var alertElement = new bootstrap.Alert(document.getElementById('customAlert'));
+            setTimeout(function () {
+                alertElement.close();
+            }, 3000); // Close the alert after 3 seconds
+        }
+    </script>
+
+    }
+

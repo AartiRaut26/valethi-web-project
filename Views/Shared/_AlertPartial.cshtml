@@ -1,0 +1,19 @@
+﻿<div id="customAlert" class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Alert Messages - </strong> <span id="alertMessage"></span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<script>
+    function showAlert(message) {
+        document.getElementById('alertMessage').innerText = message;
+        var alertElement = new bootstrap.Alert(document.getElementById('customAlert'));
+        setTimeout(function () {
+            alertElement.close();
+        }, 1000); // Close the alert after 3 seconds
+    }
+</script>
+
+
+
+
+

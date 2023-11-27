@@ -1,0 +1,23 @@
+﻿@model ClassViewModel
+
+<!-- Display details for the class -->
+<h2>Class Details</h2>
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">Class ID</dt>
+        <dd class="col-sm-10">@Model.ClassId</dd>
+
+        <dt class="col-sm-2">Class Name</dt>
+        <dd class="col-sm-10">@Model.ClassName</dd>
+    </dl>
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "ClassList")
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    }

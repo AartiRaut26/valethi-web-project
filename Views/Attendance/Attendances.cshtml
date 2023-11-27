@@ -1,0 +1,56 @@
+﻿
+@model List<Attendance>
+
+@{
+    await Html.RenderPartialAsync("_AlertPartial");
+}
+
+@{
+    var successMessage = TempData["SuccessMessage"] as string;
+}
+
+@if (!string.IsNullOrEmpty(successMessage))
+{
+    <script>
+        showAlert('@successMessage');
+    </script>
+}
+
+<!-- Your view content goes here -->
+
+
+<h1>Attendance</h1>
+
+<div class="mt-3">
+    <a asp-controller="Attendance" asp-action="AddAttendance" class="btn btn-primary">Add Attendance</a>
+</div>
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>AttendanceId</th>
+            <th>StudentId</th>
+            <th>ClassId</th>
+            <th>Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var attendance in Model)
+        {
+            <tr>
+                <td>@attendance.AttendanceId</td>
+                <td>@attendance.StudentId</td>
+                <td>@attendance.ClassId</td>
+                <td>@attendance.Time</td>
+
+                <td role="group">
+                  
+                    <a href="@Url.Action("SearchAttendance", "Attendance", new { id = attendance.AttendanceId })" class="editpartial-link">Details</a>
+                    &nbsp;&nbsp;
+
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
